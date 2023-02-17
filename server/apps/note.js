@@ -1,12 +1,14 @@
 import { Router } from "express";
 import { pool } from "../db.js";
+import { ProfanityEngine } from "@coffeeandfun/google-profanity-words";
 const noteRouter = Router();
-
+let profanity = new ProfanityEngine();
 noteRouter.get("/", async (req, res) => {
   const result =
     await pool.query(`select notes.note_id,notes.note,customers.username,categories.name,notes.created_at from notes
 inner join customers on notes.customer_id = customers.customer_id
 inner join categories on notes.cat_id = categories.cat_id order by note_id DESC`);
+
   return res.json({
     data: result.rows,
   });
@@ -69,8 +71,21 @@ noteRouter.put("/:id", async (req, res) => {
 });
 
 noteRouter.post("/", async (req, res) => {
+  const data = req.body.note.split(" ").map((data) => {
+    if (profanity.search(data.toLowerCase()) === true) {
+      let word = "";
+      for (let i = 0; i < data.length; i++) {
+        word += "*";
+      }
+      return word;
+    } else {
+      return data;
+    }
+  });
+
   const note = {
-    note: req.body.note,
+    note: data.join(" "),
+    // note: req.body.note,
     customerId: req.body.customerId,
     created_at: new Date(),
     catId: req.body.category,

@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@coffeeandfun/google-profanity-words": "^1.0.4",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.19.2",
     "cloudinary": "^1.32.0",
