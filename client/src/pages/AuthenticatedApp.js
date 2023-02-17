@@ -1,12 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 import "../App.css";
-import NoteEasy from "../components/NoteEasy";
+import Editnotepage from "./Editnotepage";
+import Homepage from "./Homepage";
 
 function AuthenticatedApp() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<NoteEasy />} />
+        <Route path="/" element={<Homepage />} />
+        <Route path="/note/edit/:noteId" element={<Editnotepage />} />
       </Routes>
     </div>
   );

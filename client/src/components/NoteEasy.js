@@ -29,12 +29,15 @@ function NoteEasy() {
   };
   const createNote = async (data) => {
     try {
-      await axios.post(`http://localhost:4000/note/`, data);
+      const result = await axios.post(`http://localhost:4000/note/`, data);
+      if (result.data.success === true) {
+        window.location.reload(false);
+      }
     } catch (error) {}
   };
   const getCategory = async () => {
     try {
-      const result = await axios.get("http://localhost:4000/note/category");
+      const result = await axios.get("http://localhost:4000/category");
       if (result.data.data) {
         setCatData(result.data.data);
       }
@@ -45,13 +48,12 @@ function NoteEasy() {
       const token = localStorage.getItem("token");
       const userdata = jwtDecode(token);
       setUserdata(userdata);
-      console.log(userdata);
     }
     getCategory();
   }, []);
   return (
     <>
-      <FormControl>
+      <FormControl isRequired>
         <FormLabel>Please Take Note!!</FormLabel>
         <Textarea
           placeholder="Here is a sample placeholder"

@@ -25,11 +25,10 @@ authRouter.post("/register", async (req, res) => {
     [user.username, user.password]
   );
   if (result) {
-    console.log("success");
+    return res.json({
+      message: "User has been created successfully",
+    });
   }
-  return res.json({
-    message: "User has been created successfully",
-  });
 });
 
 authRouter.post("/login", async (req, res) => {

@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import noteRouter from "./apps/note.js";
 import authRouter from "./apps/auth.js";
+import catRouter from "./apps/category.js";
 async function init() {
   dotenv.config();
   const app = express();
@@ -13,6 +14,7 @@ async function init() {
   app.use(bodyParser.json());
   app.use("/note", noteRouter);
   app.use("/auth", authRouter);
+  app.use("/category", catRouter);
   app.get("/", (req, res) => {
     res.send("Hello World!");
   });
