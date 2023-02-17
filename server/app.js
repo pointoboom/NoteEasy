@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import noteRouter from "./apps/note.js";
+import authRouter from "./apps/auth.js";
 async function init() {
   dotenv.config();
   const app = express();
@@ -11,6 +12,7 @@ async function init() {
   app.use(cors());
   app.use(bodyParser.json());
   app.use("/note", noteRouter);
+  app.use("/auth", authRouter);
   app.get("/", (req, res) => {
     res.send("Hello World!");
   });
