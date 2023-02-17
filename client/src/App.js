@@ -1,4 +1,3 @@
-import NoteEasy from "./components/NoteEasy";
 import AuthenticatedApp from "./pages/AuthenticatedApp";
 import UnauthenticatedApp from "./pages/UnauthenticatedApp";
 import { useAuth } from "./context/authentication";

@@ -1,9 +1,5 @@
 import {
   Flex,
-  Text,
-  Input,
-  InputGroup,
-  InputLeftElement,
   Table,
   Thead,
   Tbody,
@@ -22,14 +18,20 @@ function Dashboard() {
   const navigate = useNavigate();
   const getData = async () => {
     const result = await axios.get(`http://localhost:4000/note/`);
-    setNoteData(result.data.data);
+    const data = result.data.data.map((data) => {
+      const created_at = moment(data.created_at).format("DD MMM YYYY HH:mm");
+
+      data = { ...data, created_at };
+      return data;
+    });
+    setNoteData(data);
   };
   useEffect(() => {
     getData();
   }, []);
   return (
     <>
-      <Flex direction="row">
+      <Flex direction="row" mt="30px">
         <Flex w="100%" bg="#F6F7FC" justifyContent="center">
           <Flex direction="column" bg="#F6F7FC" w="full">
             <Flex align="center" justify="center" display="flex">

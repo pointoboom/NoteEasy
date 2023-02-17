@@ -1,15 +1,13 @@
 import {
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
   Textarea,
   Button,
   Select,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/authentication";
-import { useNavigate } from "react-router-dom";
+
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 function NoteEasy() {

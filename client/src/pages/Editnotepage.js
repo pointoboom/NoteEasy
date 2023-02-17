@@ -1,15 +1,12 @@
 import {
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
   Textarea,
   Button,
   Select,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useAuth } from "../context/authentication";
 import { useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
@@ -24,7 +21,6 @@ function Editnotepage() {
 
   const handlesubmit = (event) => {
     event.preventDefault();
-
     editNote({
       note,
       category,
@@ -57,6 +53,15 @@ function Editnotepage() {
         setCatData(result.data.data);
       }
     } catch (error) {}
+  };
+  const deleteNote = async () => {
+    const result = await axios.delete(
+      `http://localhost:4000/note/${params.noteId}`,
+      { data: { customerId: userdata.id } }
+    );
+    if (result.data.success === true) {
+      navigate("/");
+    }
   };
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -109,7 +114,13 @@ function Editnotepage() {
             >
               Submit
             </Button>
-            <Button backgroundColor="blue.300" type="submit">
+            <Button
+              backgroundColor="blue.300"
+              type="submit"
+              onClick={() => {
+                deleteNote();
+              }}
+            >
               Delete
             </Button>
           </FormControl>

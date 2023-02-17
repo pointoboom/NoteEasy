@@ -1,13 +1,4 @@
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  Textarea,
-  Button,
-  Select,
-  Input,
-} from "@chakra-ui/react";
+import { FormControl, FormLabel, Button, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import { useAuth } from "../context/authentication";
 function Register() {
