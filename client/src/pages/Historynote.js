@@ -25,7 +25,7 @@ function Historynote() {
     );
     console.log(result.data.data);
     const data = result.data.data.map((data) => {
-      const updated_at = moment(data.updated_at).format("DD MMM YYYY HH:mm");
+      const updated_at = moment(data.updated_at).format("DD MMM YYYY HH:mm:ss");
 
       data = { ...data, updated_at };
       return data;
@@ -58,23 +58,33 @@ function Historynote() {
             mx="20px"
           >
             <Flex>
-              <Text>Note:</Text>
+              <Text fontWeight="bold" mr="5px">
+                Note:{" "}
+              </Text>
               <Text>{note.history_note}</Text>
             </Flex>
             <Flex>
-              <Text>Category:</Text>
+              <Text fontWeight="bold" mr="5px">
+                Category:{" "}
+              </Text>
               <Text>{note.name}</Text>
             </Flex>
             <Flex>
-              <Text>User:</Text>
+              <Text fontWeight="bold" mr="5px">
+                User:{" "}
+              </Text>
               <Text>{note.username}</Text>
             </Flex>
             <Flex>
-              <Text>Action:</Text>
+              <Text fontWeight="bold" mr="5px">
+                Action:{" "}
+              </Text>
               <Text>{note.action}</Text>
             </Flex>
             <Flex>
-              <Text>Timestamp:</Text>
+              <Text fontWeight="bold" mr="5px">
+                Timestamp:
+              </Text>
               <Text>{note.updated_at}</Text>
             </Flex>
           </Flex>

@@ -77,7 +77,7 @@ noteRouter.get("/history/:id", async (req, res) => {
   const result = await pool.query(
     `select notes.note_id,histories.history_note,customers.username,categories.name,histories.updated_at,histories.action from notes  
     inner join customers on notes.customer_id = customers.customer_id   inner join categories on notes.cat_id = categories.cat_id 
-    inner join histories on histories.note_id = notes.note_id where notes.note_id = $1`,
+    inner join histories on histories.note_id = notes.note_id where notes.note_id = $1 order by updated_at DESC`,
     [noteId]
   );
 
