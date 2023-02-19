@@ -1,7 +1,9 @@
 import { Router } from "express";
 import { pool } from "../db.js";
 import { ProfanityEngine } from "@coffeeandfun/google-profanity-words";
+import { protect } from "../middlewares/protect.js";
 const noteRouter = Router();
+noteRouter.use(protect);
 let profanity = new ProfanityEngine();
 noteRouter.get("/", async (req, res) => {
   const result =
@@ -67,6 +69,20 @@ noteRouter.put("/:id", async (req, res) => {
   return res.json({
     success: true,
     message: "Note has been updated.",
+  });
+});
+
+noteRouter.get("/history/:id", async (req, res) => {
+  const noteId = req.params.id;
+  const result = await pool.query(
+    `select notes.note_id,histories.history_note,customers.username,categories.name,histories.updated_at,histories.action from notes  
+    inner join customers on notes.customer_id = customers.customer_id   inner join categories on notes.cat_id = categories.cat_id 
+    inner join histories on histories.note_id = notes.note_id where notes.note_id = $1`,
+    [noteId]
+  );
+
+  return res.json({
+    data: result.rows,
   });
 });
 

@@ -75,7 +75,13 @@ function Dashboard() {
                             >
                               Edit
                             </Button>{" "}
-                            <Button backgroundColor="blue.300" type="submit">
+                            <Button
+                              backgroundColor="blue.300"
+                              type="submit"
+                              onClick={() =>
+                                navigate(`/note/history/${data.note_id}`)
+                              }
+                            >
                               History
                             </Button>
                           </Td>
