@@ -1,15 +1,4 @@
-import {
-  Flex,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Text,
-  TableContainer,
-  Button,
-} from "@chakra-ui/react";
+import { Flex, Text, Button } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
