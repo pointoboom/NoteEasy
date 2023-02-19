@@ -8,6 +8,7 @@ import {
   Td,
   TableContainer,
   Button,
+  Text,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -63,7 +64,18 @@ function Dashboard() {
                           <Td>{data.note_id}</Td>
                           <Td>{data.note}</Td>
                           <Td>{data.username}</Td>
-                          <Td>{data.name}</Td>
+                          <Td>
+                            <Flex
+                              justifyContent="center"
+                              alignItems="center"
+                              backgroundColor="green.200"
+                              borderRadius="5px"
+                            >
+                              <Text p="10px" fontWeight="bold">
+                                {data.name}
+                              </Text>
+                            </Flex>
+                          </Td>
                           <Td>{data.created_at}</Td>
                           <Td>
                             <Button

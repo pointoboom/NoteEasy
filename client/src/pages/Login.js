@@ -1,4 +1,11 @@
-import { FormControl, FormLabel, Button, Input } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormLabel,
+  Button,
+  Input,
+  Flex,
+  Text,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import { useAuth } from "../context/authentication";
 import { useNavigate } from "react-router-dom";
@@ -16,43 +23,79 @@ function Login() {
   };
   return (
     <>
-      <FormControl>
-        <FormLabel>Login</FormLabel>
-        <Input
-          type="text"
-          placeholder="Here is a sample placeholder"
-          onChange={(event) => {
-            setUsername(event.target.value);
-          }}
-        />
-        <Input
-          placeholder="Select option"
-          type="password"
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-        />
-
-        <Button
-          backgroundColor="blue.300"
-          type="submit"
-          onClick={(e) => {
-            handleSubmit(e);
-          }}
-          mr="30px"
+      <Flex
+        h="100vh"
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        backgroundColor="green.200"
+      >
+        <Flex
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          mt="30px"
         >
-          Submit
-        </Button>
-        <Button
-          backgroundColor="blue.300"
-          type="submit"
-          onClick={(e) => {
-            navigate("/register");
-          }}
+          <Text fontSize="30px" fontWeight="bold">
+            Login
+          </Text>
+        </Flex>
+        <FormControl
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          mt="20px"
+          py="10px"
         >
-          Register
-        </Button>
-      </FormControl>
+          <Flex>
+            <FormLabel pt="10px" mr="9px">
+              Username
+            </FormLabel>
+            <Input
+              type="text"
+              placeholder="username"
+              onChange={(event) => {
+                setUsername(event.target.value);
+              }}
+              w="500px"
+            />
+          </Flex>
+          <Flex>
+            <FormLabel pt="10px" mr="12px">
+              Password
+            </FormLabel>
+            <Input
+              placeholder="Select option"
+              type="password"
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+              w="500px"
+            />
+          </Flex>
+          <Flex mt="20px">
+            <Button
+              backgroundColor="blue.300"
+              type="submit"
+              onClick={(e) => {
+                handleSubmit(e);
+              }}
+              mr="30px"
+            >
+              Submit
+            </Button>
+            <Button
+              backgroundColor="blue.300"
+              type="submit"
+              onClick={(e) => {
+                navigate("/register");
+              }}
+            >
+              Register
+            </Button>
+          </Flex>
+        </FormControl>
+      </Flex>
     </>
   );
 }

@@ -4,6 +4,7 @@ import {
   Textarea,
   Button,
   Select,
+  Flex,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -73,18 +74,30 @@ function Editnotepage() {
     getCategory();
     getNoteById(params.noteId);
   }, []);
+  console.log(userdata);
   return (
     <>
       {noteById.map((note) => {
         return (
-          <FormControl isRequired>
-            <FormLabel>Please Take Note!!</FormLabel>
+          <FormControl
+            isRequired
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            mt="20px"
+            py="10px"
+          >
+            <FormLabel fontSize="30px" fontWeight="bold">
+              Please Take Note!!
+            </FormLabel>
             <Textarea
               defaultValue={note.note}
               placeholder="Here is a sample placeholder"
               onChange={(event) => {
                 setNote(event.target.value);
               }}
+              width="500px"
+              mt="20px"
             />
 
             <Select
@@ -93,6 +106,8 @@ function Editnotepage() {
                 setCategory(event.target.value);
               }}
               defaultValue={category}
+              width="500px"
+              mt="20px"
             >
               {catData.map((data) => {
                 return (
@@ -104,25 +119,27 @@ function Editnotepage() {
                 );
               })}
             </Select>
-            <Button
-              mr="30px"
-              backgroundColor="blue.300"
-              type="submit"
-              onClick={(e) => {
-                handlesubmit(e);
-              }}
-            >
-              Submit
-            </Button>
-            <Button
-              backgroundColor="blue.300"
-              type="submit"
-              onClick={() => {
-                deleteNote();
-              }}
-            >
-              Delete
-            </Button>
+            <Flex mt="20px">
+              <Button
+                mr="30px"
+                backgroundColor="blue.300"
+                type="submit"
+                onClick={(e) => {
+                  handlesubmit(e);
+                }}
+              >
+                Submit
+              </Button>
+              <Button
+                backgroundColor="blue.300"
+                type="submit"
+                onClick={() => {
+                  deleteNote();
+                }}
+              >
+                Delete
+              </Button>
+            </Flex>
           </FormControl>
         );
       })}

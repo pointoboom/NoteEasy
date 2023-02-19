@@ -4,6 +4,7 @@ import {
   Textarea,
   Button,
   Select,
+  Flex,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/authentication";
@@ -51,20 +52,33 @@ function NoteEasy() {
   }, []);
   return (
     <>
-      <FormControl isRequired>
-        <FormLabel>Please Take Note!!</FormLabel>
+      <FormControl
+        isRequired
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        mt="20px"
+        py="10px"
+      >
+        <FormLabel fontSize="30px" fontWeight="bold">
+          Please Take Note!!
+        </FormLabel>
         <Textarea
           placeholder="Here is a sample placeholder"
           onChange={(event) => {
             setNote(event.target.value);
           }}
+          width="500px"
+          mt="20px"
         />
 
         <Select
+          mt="20px"
           placeholder="Select option"
           onChange={(event) => {
             setCategory(event.target.value);
           }}
+          width="500px"
         >
           {catData.map((data) => {
             return (
@@ -76,25 +90,27 @@ function NoteEasy() {
             );
           })}
         </Select>
-        <Button
-          mr="30px"
-          backgroundColor="blue.300"
-          type="submit"
-          onClick={(e) => {
-            handlesubmit(e);
-          }}
-        >
-          Submit
-        </Button>
-        <Button
-          backgroundColor="blue.300"
-          type="submit"
-          onClick={(e) => {
-            logout();
-          }}
-        >
-          Logout
-        </Button>
+        <Flex mt="20px">
+          <Button
+            mr="30px"
+            backgroundColor="blue.300"
+            type="submit"
+            onClick={(e) => {
+              handlesubmit(e);
+            }}
+          >
+            Submit
+          </Button>
+          <Button
+            backgroundColor="blue.300"
+            type="submit"
+            onClick={(e) => {
+              logout();
+            }}
+          >
+            Logout
+          </Button>
+        </Flex>
       </FormControl>
     </>
   );
