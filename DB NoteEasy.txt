@@ -1,0 +1,31 @@
+create table customers (
+  cusatomer_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+	username VARCHAR(50),
+	password TEXT
+	
+);
+
+create table categories (
+  cat_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+	name VARCHAR(50)	
+	
+);
+
+create table notes (
+  note_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+	note TEXT,	
+	customer_id INT REFERENCES customers(customer_id) ON DELETE CASCADE,
+	cat_id INT REFERENCES categories(cat_id) ON DELETE CASCADE,
+	created_at TIMESTAMPTZ NOT NULL
+);
+
+
+create table histories (
+  history_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,	
+	customer_id INT REFERENCES customers(customer_id) ON DELETE CASCADE,
+	note_id INT REFERENCES notes(note_id) ON DELETE CASCADE,
+	updated_at TIMESTAMPTZ NOT NULL,
+	action VARCHAR(50),
+	history_note TEXT,
+	history_cat INT REFERENCES categories(cat_id) ON DELETE CASCADE
+);
